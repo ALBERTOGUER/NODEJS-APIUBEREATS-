@@ -1,0 +1,48 @@
+
+ export default [
+    {
+        "idRestaurant":1,
+        "pedidos":[]
+    },
+    {
+        "idRestaurant":2,
+        "pedidos":[]
+    },
+    {
+        "idRestaurant":3,
+        "pedidos":[]
+    },
+    {
+        "idRestaurant":4,
+        "pedidos":[]
+    },
+    {
+        "idRestaurant":5,
+        "pedidos":[]
+    },
+    {
+        "idRestaurant":6,
+        "pedidos":[]
+    },
+    {
+        "idRestaurant":7,
+        "pedidos":[]
+    },
+    {
+        "idRestaurant":8,
+        "pedidos":[]
+    },
+    {
+        "idRestaurant":9,
+        "pedidos":[]
+    },
+    {
+        "idRestaurant":10,
+        "pedidos":[]
+    },
+    {
+        "idRestaurant":11,
+        "pedidos":[]
+    }
+]
+

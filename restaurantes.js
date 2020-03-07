@@ -1,5 +1,5 @@
 
-  var  restaurantes = [
+ export default [
         {
             "id":1,
             "nombre":"Las alitas",
@@ -15,7 +15,9 @@
                     "nombre":"Boneless",
                     "precio":140
                 }
-            ]
+            ],
+            "pedidos":[],
+            "pedidosAceptados":[]
         },
         {
             "id":2,
@@ -32,7 +34,9 @@
                     "nombre":"Picanha",
                     "precio":250
                 }
-            ]
+            ],
+            "pedidos":[],
+            "pedidosAceptados":[]
         },
         {
             "id":3,
@@ -49,7 +53,9 @@
                     "nombre":"Bagget de salami",
                     "precio":80
                 },
-            ]
+            ],
+            "pedidos":[],
+            "pedidosAceptados":[]
         },
         {
             "id":4,
@@ -66,7 +72,9 @@
                     "nombre":"Torta",
                     "precio":50
                 },
-            ]
+            ],
+            "pedidos":[],
+            "pedidosAceptados":[]
         },
         {
             "id":5,
@@ -83,7 +91,9 @@
                     "nombre":"Rib-eye",
                     "precio":260
                 },
-            ]
+            ],
+            "pedidos":[],
+            "pedidosAceptados":[]
         },
         {
             "id":6,
@@ -100,7 +110,9 @@
                     "nombre":"Gordita de papas",
                     "precio":20
                 },
-            ]
+            ],
+            "pedidos":[],
+            "pedidosAceptados":[]
         },
         {
             "id":7,
@@ -117,7 +129,9 @@
                     "nombre":"Enchiladas",
                     "precio":80
                 },
-            ]
+            ],
+            "pedidos":[],
+            "pedidosAceptados":[]
         },
         {
             "id":8,
@@ -134,7 +148,9 @@
                     "nombre":"Parrillada mariscos",
                     "precio":5500
                 },
-            ]
+            ],
+            "pedidos":[],
+            "pedidosAceptados":[]
         },
         {
             "id":9,
@@ -151,7 +167,9 @@
                     "nombre":"Huarache",
                     "precio":80
                 },
-            ]
+            ],
+            "pedidos":[],
+            "pedidosAceptados":[]
         },
         {
             "id":10,
@@ -168,7 +186,9 @@
                     "nombre":"Pizza de salami",
                     "precio":130
                 },
-            ]
+            ],
+            "pedidos":[],
+            "pedidosAceptados":[]
         },
         {
             "id":11,
@@ -185,8 +205,9 @@
                     "nombre":"Molletes",
                     "precio":70
                 },
-            ]
+            ],
+            "pedidos":[],
+            "pedidosAceptados":[]
         }
     ]
 
-export default restaurantes;

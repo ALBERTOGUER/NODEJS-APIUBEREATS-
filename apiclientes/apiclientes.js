@@ -1,8 +1,9 @@
-import restaurantes from './restaurantes'
-
-module.exports = (APP) => {
+export default (APP, restaurantes, pedidosPorConfir) => {
 
     let seleccionados = [];
+    
+
+
 
     APP.get('zonas/:zona', (req, resp) => {
 
@@ -51,45 +52,75 @@ module.exports = (APP) => {
         res.send(platillo[0].platillos)
     })
 
-    APP.get('/platillos/:id', (req, res) => {
-        let platillo = restaurantes.filter(rest => rest.id == req.params.id)
-        res.send(platillo[0].platillos)
-    })
 
+    //:id es el id del restaurant
+    //Cada uno de los arrays de pedido realizara un push de un objeto el cual es el platillo seleccionado, las condiciones if son para  ir generando un array de pedidos de acuerdo al restaurant que pertenezca el platillo sleccionado  
+    //Es necesario confirmar para tener pedidos en los restaurantes con el metodo de abajo
     APP.post('/Seleccionar/:id/:idplatillo', (req, res) => {
         let platillo = restaurantes.filter(rest => rest.id == req.params.id);
         let platilloSeleccionado = platillo[0].platillos.filter(selected => selected.id == req.params.idplatillo)
         seleccionados.push(platilloSeleccionado[0])
-        console.log(seleccionados);
-        res.json({ status: 'platillo seleccionado', result: platilloSeleccionado, platillosSelectos: seleccionados})
-      
+
+        for (let i = 0; i < pedidosPorConfir.length; i++) {
+            if (req.params.id == i + 1) {
+                pedidosPorConfir[i].pedidos.push(platilloSeleccionado[0])
+            }
+            console.log(pedidosPorConfir[i].pedidos);
+        }
+        
+        res.json({
+            status: 'platillo seleccionado',
+            result: platilloSeleccionado,
+            platillosSelectos: seleccionados
+        })
     })
 
     APP.post('/borrar/:nombre', (req, res) => {
-        
-        /* seleccionados.map(function(e) { return e.nombre; }).indexOf(req.params.nombre); */
+
+      
         var x = seleccionados.findIndex(i => i.nombre == req.params.nombre);
-        seleccionados.splice(x,1)
-        res.json({ status: 'borrado', result: seleccionados})
-        
+        seleccionados.splice(x, 1)
+        res.json({
+            status: 'borrado',
+            result: seleccionados
+        })
+
     })
 
     APP.get('/pedido', (req, res) => {
         res.send(seleccionados)
     })
 
-    APP.post('/cancelar', (req,res)=>{
+    // vaciara todos los pedidos por confirmar
+    APP.post('/cancelar', (req, res) => {
         seleccionados.splice(0, seleccionados.length)
-        res.json({ status: 'cancelado', result: seleccionados})
+       
+        for (let i = 0; i < pedidosPorConfir.length; i++) {
+            pedidosPorConfir[i].pedidos.splice(0, pedidosPorConfir[i].pedidos.length)
+        }
+        res.json({
+            status: 'cancelado',
+            result: seleccionados
+        })
     })
 
-    APP.post('/confirmar', (req,res)=>{
-        let totalprecio = 0;
-        for( let i = 0; i <seleccionados.length; i++){
-           totalprecio = totalprecio + seleccionados[i].precio
+    //Se iguala por medio del for pedidosporconfimar a los pedidos de cada restaurante
+    //Es necesario confirmar para tener pedidos en los restaurantes
+    APP.post('/confirmar', (req, res) => {
+        
+        for(let i=0;i<restaurantes.length;i++){
+            restaurantes[i].pedidos =  pedidosPorConfir[i].pedidos
+        }
+
+        for (let i = 0; i < restaurantes.length; i++) {
+                console.log(restaurantes[i].pedidos, 'prueba');
         }
         
-        res.json({ status: 'Comprar realizada', result: seleccionados, total:totalprecio})
+         res.json({
+             status: 'Pedidos confirmados',
+             Pedidos: pedidosPorConfir
+         })
+
     })
 
 
